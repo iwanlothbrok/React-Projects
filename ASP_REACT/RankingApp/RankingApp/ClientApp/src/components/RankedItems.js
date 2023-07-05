@@ -1,5 +1,4 @@
 ﻿import React, { useEffect, useState } from 'react'
-import axios from "axios";
 
 export default function RankedItems() {
 
@@ -9,14 +8,15 @@ export default function RankedItems() {
 
     useEffect(() => {
 
-        axios.get(`item/${dataType}`)
-            .then(res => { res.json() })
-            .then(res => { setItems(res) }), []);
+        fetch(`item/${dataType}`)
+            .then((res) => { return res.json(); })
+            .then(res => { setItems(res); })
+    }, [])
 
     return (
         <main>
             {
-                (items != null) ? (items.map((it) => <h3>{it.title}</h3>)) : <h2>Loading....</h2>
+                (items != null) ? (items.map((it) => <h3>{it.title}</h3>)) : <h2>Loading...</h2>
             }
         </main>
     )
