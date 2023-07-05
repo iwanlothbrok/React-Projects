@@ -16,7 +16,7 @@ export default function RankedItems() {
     return (
         <main>
             {
-                (items != null) ? (items.map((it) => <h3>{it.title}</h3>)) : <h2>Loading...</h2>
+                (items.length > 0) ? (items.map((it) => <h3>{it.title}</h3>)) : <h2>Loading...</h2>
             }
         </main>
     )
