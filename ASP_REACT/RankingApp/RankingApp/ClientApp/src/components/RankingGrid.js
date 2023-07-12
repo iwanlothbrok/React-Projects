@@ -13,7 +13,12 @@ export default function RankingGrid({ items, imgArr }) {
 
     function pushCellToArr(collection, rankNum, rowLabel) {
         if (rankNum > 0) {
-        //    var items = items.find(0=> 0.ranking)
+            var items = items.find(o => o.ranking === rankNum);
+            collection.push(<div id={`rank-${rankNum}`} className="rank-cell"></div>)
+        } else {
+            collection.push(<div className="row-label">
+                <h4>{rowNum}</h4>
+            </div>)
         }
     }
 
