@@ -1,3 +1,16 @@
+
+# HOW THE API IS LOOKING #
+
+
+![API](WEATHER.png)
+
+
+# FUNCTIONS #
+# you have input for searching the town you want #
+# and when you click enter it shows you the weather of the selected town #
+# if there is no town like this it will set everything to null #
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +81,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
