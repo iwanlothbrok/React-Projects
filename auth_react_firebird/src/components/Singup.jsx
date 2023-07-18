@@ -1,11 +1,26 @@
 
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
-
+import { UserAuth } from '../context/AuthContext'
 const Signup = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
 
+    const { createUser } = UserAuth()
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError('');
+        try {
+            await createUser(email, password)
+
+        } catch (e) {
+            setError(e.message)
+            console.log(e.message);
+        }
+    }
 
     return (
         <div className='max-w-[700px] mx-auto my-16 p-4'>
