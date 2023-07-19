@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Singin />} />
         <Route path="/singup" element={<Singup />} />
-        <Route path="/accout" element={<Account />} />
+        <Route path="/account" element={<Account />} />
       </Routes>
     </div>
   );
