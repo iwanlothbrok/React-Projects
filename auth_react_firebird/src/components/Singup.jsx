@@ -22,6 +22,7 @@ const Signup = () => {
         try {
             await createUser(email, password)
             // which allows the component to programmatically navigate to a different route.
+            alert("You have succsessfully logged in!")
             navigate('/account')
         } catch (e) {
             setError(e.message)

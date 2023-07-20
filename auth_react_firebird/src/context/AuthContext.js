@@ -16,6 +16,13 @@ export const AuthContextProvicer = ({ children }) => {
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
     };
+
+
+    const singIn = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+
+
     //[] as the dependency array means it will only run once).
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -28,10 +35,10 @@ export const AuthContextProvicer = ({ children }) => {
     }, []);
 
 
-    
+
 
     return (
-        <UserContext.Provider value={{ createUser, user }}>
+        <UserContext.Provider value={{ createUser, user, singIn }}>
             {children}
         </UserContext.Provider>
     )

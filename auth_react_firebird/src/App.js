@@ -3,6 +3,7 @@ import Singin from "./components/Singin";
 import Singup from "./components/Singup";
 import Account from "./components/Account";
 import { Routes, Route } from 'react-router-dom'
+import ProtectedRouter from "./components/ProtectedRouter";
 
 
 function App() {
@@ -13,8 +14,12 @@ function App() {
       </h1>
       <Routes>
         <Route path="/" element={<Singin />} />
-        <Route path="/singup" element={<Singup />} />
-        <Route path="/account" element={<Account />} />
+        <Route path="/signup" element={<Singup />} />
+        <Route path="/account" element={
+          <ProtectedRouter>
+            <Account />
+          </ProtectedRouter>
+        } />
       </Routes>
     </div>
   );
