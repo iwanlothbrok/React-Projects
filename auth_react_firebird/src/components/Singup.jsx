@@ -10,11 +10,18 @@ const Signup = () => {
 
     const { createUser } = UserAuth()
 
+
+    // function is an asynchronous function that handles the form submission.
+    // When the user submits the form, it will be prevented from submitting the regular way (e.preventDefault()),
+    // and the createUser function is called with the provided email and password.
+    // If successful, it will navigate the user to the '/account' route. If there's an error during signup,
+    // it will be caught, and the error message will be set in the state to display to the user.
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         try {
             await createUser(email, password)
+            // which allows the component to programmatically navigate to a different route.
             navigate('/account')
         } catch (e) {
             setError(e.message)

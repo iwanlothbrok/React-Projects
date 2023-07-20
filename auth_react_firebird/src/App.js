@@ -8,7 +8,7 @@ import { Routes, Route } from 'react-router-dom'
 function App() {
   return (
     <div className="App">
-      <h1 className="text-3xl font-bold underline">
+      <h1 className="text-3xl font-bold underline flex justify-center">
         FIREBASE AUTH
       </h1>
       <Routes>

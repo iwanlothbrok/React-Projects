@@ -16,7 +16,7 @@ export const AuthContextProvicer = ({ children }) => {
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
     };
-
+    //[] as the dependency array means it will only run once).
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             console.log(currentUser);
@@ -28,6 +28,8 @@ export const AuthContextProvicer = ({ children }) => {
     }, []);
 
 
+    
+
     return (
         <UserContext.Provider value={{ createUser, user }}>
             {children}
@@ -35,6 +37,8 @@ export const AuthContextProvicer = ({ children }) => {
     )
 }
 
+// By using the UserAuth hook in any component within the AuthContextProvider,
+//  you can access the createUser function and user object with the authenticated user's data.
 
 export const UserAuth = () => {
     return useContext(UserContext)
