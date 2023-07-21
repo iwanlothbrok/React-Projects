@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AiOutlinePlus } from 'react-icons/ai'
 import Todo from "./Components/Todo";
+import { db } from "./firebase"
+import { getDocs, collection } from "firebase/firestore";
+
 const style = {
   bg: `h-screen w-screen p-4 bg-gradient-to-r from-[#2F80ED] to-[#1CB5E0]`,
   container: `bg-slate-100 max-w-[500px] w-full m-auto rounded-md shadow-xl p-4`,
@@ -14,33 +17,55 @@ const style = {
 
 function App() {
 
-  const [todos, setTodos] = useState(['learn react', 'workout']);
-  const [input, setInput] = useState('');
+  const [todos, setTodos] = useState([]);
 
-  const addTodo = (e) => {
-    e.preventDefault();
-    if (input.trim() !== '') {
-      setTodos([input, ...todos]);
-      setInput('');
-    }
-  };
+  // CREATE 
 
-  const handleChangeOfInput = (event) => {
-    console.log(event.target.value);
-    setInput(event.target.value);
-  };
+  // READ, our function which reads all of the todos from the database 
+  useEffect(() => {
+
+    const fetchTodos = async () => {
+      try {
+        const dbTodos = await getDocs(collection(db, 'todos'));
+        const todosData = [];
+
+        // Iterate over the documents and extract the data
+        dbTodos.forEach((doc) => {
+          todosData.push(doc.data().text);
+        });
+
+
+        setTodos(todosData);
+      }
+      catch (error) {
+        console.error("Error fetching todos:", error);
+      }
+    };
+
+    fetchTodos();
+
+  }, [])
+
+
+  // UPDATE
+
+  // DELETE
 
   return (
     <div className={style.bg}>
       <div className={style.container}>
         <h3 className={style.heading}>TODO:</h3>
         <form className={style.form}>
-          <input type="text" className={style.input} value={input} placeholder="Add Todo" onChange={handleChangeOfInput}></input>
-          <button className={style.button} onClick={addTodo} ><AiOutlinePlus size={30} /> </button>
+          <input type="text" className={style.input} placeholder="Add Todo"></input>
+          <button className={style.button} ><AiOutlinePlus size={30} /> </button>
         </form>
         <ul>
-          <Todo todos={todos}></Todo>
+
+          {todos.map((todo, index) => (
+            <Todo key={index} todo={todo} />
+          ))}
         </ul>
+        <p className={style.count}>You have {todos.length} todos.</p>
       </div>
     </div>
   );
