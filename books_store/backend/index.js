@@ -2,4 +2,10 @@ const express = require('express');
 
 const app = express();
 
-app.listen(8800, () => { console.log('we are in'); });
+app.get('/', (req, res) => {
+    res.send('hello')
+})
+
+app.listen(8801, () => {
+    console.log(`Server is running on port ${8801}`);
+});
